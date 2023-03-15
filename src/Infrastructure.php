@@ -10,13 +10,30 @@ class Infrastructure
     private Container $container;
     public function run()
     {
+        return $this;
+    }
+
+    public function setSettings(string $settingFile)
+    {
+        $settings = include $settingFile;
+
+        $this->container->add(Config::class)
+            ->addArgument($settings['ssl_certificate'])
+            ->addArgument($settings['nginx'])
+            ->addArgument($settings['nginx_options_ssl'])
+            ->addArgument($settings['nginx_ssl_dhparam']);
+
+    }
+
+    public function setSites(string $sites)
+    {
 
     }
 
     private function register(): void
     {
-       // $this->container->add(StaticTemplate::class)
-        //    ->addArgument()
+        $this->container->add(StaticTemplate::class)
+            ->addArgument(Config::class);
     }
 
     public function getContainer(): Container

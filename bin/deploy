@@ -8,4 +8,6 @@ if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
 }
 
 $infrastructure = new \Jorisros\InfraPhp\Infrastructure();
+$infrastructure->setSettings($argv[1]);
+$infrastructure->setSites($argv[2]);
 $infrastructure->run();

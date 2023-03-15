@@ -4,7 +4,7 @@ return [
     [
         'path' => '',
         'domain' => '',
-        'template' => '',
+        'template' => \Jorisros\InfraPhp\Factory\StaticTemplate::class,
         'ssl' => true
     ]
 ];
