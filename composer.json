@@ -1,0 +1,19 @@
+{
+    "name": "jorisros/infra-php",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Jorisros\\InfraPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Joris Ros",
+            "email": "joris.ros@gmail.com"
+        }
+    ],
+    "bin": [
+        "bin/deploy"
+    ],
+    "require": {}
+}
