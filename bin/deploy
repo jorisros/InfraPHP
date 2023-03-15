@@ -1,8 +1,11 @@
 #!/usr/bin/env php
-<?php
+<?php declare(strict_types=1);
+
+require_once __DIR__ . '/../vendor/autoload.php';
 
 if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
     echo 'Warning: Composer should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
 }
 
-print_r('test');
+$infrastructure = new \Jorisros\InfraPhp\Infrastructure();
+$infrastructure->run();
