@@ -8,8 +8,14 @@ use League\Container\Container;
 class Infrastructure
 {
     private Container $container;
+
+    public function __construct()
+    {
+        $this->container = new Container();
+    }
     public function run()
     {
+        $this->register();
         return $this;
     }
 
