@@ -2,12 +2,18 @@
 
 namespace Jorisros\InfraPhp\Factory;
 
+use Jorisros\InfraPhp\Config;
 use JorisRos\NginxParser\NginxBuilder;
 use JorisRos\NginxParser\NginxParser;
 
 class StaticTemplate
 {
-    public static function create(
+    private Config $config;
+    public function __construct(Config $config)
+    {
+        $this->config = $config;
+    }
+    public function create(
         string $path,
         string $domain,
         bool $isSSL
