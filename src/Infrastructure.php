@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Jorisros\InfraPhp;
 
@@ -13,13 +15,13 @@ class Infrastructure
     {
         $this->container = new Container();
     }
-    public function run()
+    public function run(): static
     {
         $this->register();
         return $this;
     }
 
-    public function setSettings(string $settingFile)
+    public function setSettings(string $settingFile): void
     {
         $settings = include $settingFile;
 
@@ -28,12 +30,11 @@ class Infrastructure
             ->addArgument($settings['nginx'])
             ->addArgument($settings['nginx_options_ssl'])
             ->addArgument($settings['nginx_ssl_dhparam']);
-
     }
 
-    public function setSites(string $sites)
+    public function setSites(string $sites): void
     {
-
+        //@TODO to implement
     }
 
     private function register(): void
