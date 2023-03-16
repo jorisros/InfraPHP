@@ -3,18 +3,29 @@ name: Integration
 on: [push]
 
 jobs:
-  phpunit:
-    runs-on: ubuntu-latest
-
+  run:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: ['8.1','8.2']
+    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:
-
-      - name: Setup PHP
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.1"
-
-      - name: Install dependencies
-        run: composer install
-
-      - name: Run phpunit
-        run: ./bin/phpunit tests
+          php-version: ${{ matrix.php-versions }}
+          extensions: intl #optional
+          ini-values: "post_max_size=256M" #optional
+      - name: Check PHP Version
+        run: php -v
+      - name: Composer
+        uses: php-actions/composer@v6
+      - name: Tests
+        uses: php-actions/phpunit@v3
+        with:
+          args: tests
+          php_version: ${{ matrix.php-versions }}
+          version: 8

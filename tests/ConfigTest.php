@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/../vendor/autoload.php';
 final class ConfigTest extends \PHPUnit\Framework\TestCase
 {
     public function testNoCerticateLocation()
